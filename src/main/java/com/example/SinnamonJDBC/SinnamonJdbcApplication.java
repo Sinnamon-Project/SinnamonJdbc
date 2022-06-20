@@ -1,5 +1,9 @@
 package com.example.SinnamonJDBC;
 
+import com.example.SinnamonJDBC.model.Author;
+import com.example.SinnamonJDBC.model.Blog_post;
+import com.example.SinnamonJDBC.repository.AuthorRepository;
+import com.example.SinnamonJDBC.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -8,10 +12,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.util.List;
 
 @SpringBootApplication
-public class SinnamonJdbcApplication implements CommandLineRunner {
+public class SinnamonJdbcApplication {
 
 	@Autowired
-	AuthorRepository authorRep;
+    AuthorRepository authorRep;
 	@Autowired
 
 	PostRepository postRep;
@@ -21,23 +25,23 @@ public class SinnamonJdbcApplication implements CommandLineRunner {
 	}
 
 
-	@Override
-	public void run(String... args) throws Exception {
-		List<Author> autList = authorRep.findAllAuthors();
-		for (Author a : autList) {
-			System.out.println(a);
-		}
-
-		Author auth = authorRep.findOneAuthor("Hendy");
-		System.out.println("this is from author rep " + auth);
-
-		List<Blog_post> posts = postRep.findAllBlogs();
-		for (Blog_post b : posts) {
-			System.out.println(b);
-		}
-
-
-	}
+//	@Override
+//	public void run(String... args) throws Exception {
+//		List<Author> autList = authorRep.findAllAuthors();
+//		for (Author a : autList) {
+//			System.out.println(a);
+//		}
+//
+//		Author auth = authorRep.findOneAuthor("Hendy");
+//		System.out.println("this is from author rep " + auth);
+//
+//		List<Blog_post> posts = postRep.findAllBlogs();
+//		for (Blog_post b : posts) {
+//			System.out.println(b);
+//		}
+//
+//
+//	}
 }
 
 

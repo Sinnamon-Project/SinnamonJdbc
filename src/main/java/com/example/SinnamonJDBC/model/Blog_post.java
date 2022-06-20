@@ -1,4 +1,6 @@
-package com.example.SinnamonJDBC;
+package com.example.SinnamonJDBC.model;
+
+import com.fasterxml.jackson.annotation.JsonSetter;
 
 public class Blog_post {
 
@@ -9,6 +11,8 @@ public class Blog_post {
     private String text_post;
     private String picture;
     private int author;
+
+
 
     @Override
     public String toString() {

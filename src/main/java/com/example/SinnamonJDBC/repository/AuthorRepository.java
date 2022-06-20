@@ -1,5 +1,6 @@
-package com.example.SinnamonJDBC;
+package com.example.SinnamonJDBC.repository;
 
+import com.example.SinnamonJDBC.model.Author;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -25,6 +26,14 @@ public class AuthorRepository {
         //int result = jdbcTemplate.queryForObject( “select count(*) 	from Author”, Integer.class);
         return n;
     }
+    public void saveNewAuthor(Author author){
+        String mySql = "insert into author(first_name,last_name, author_id) values (?,?,?)";
+        int authInt = jdbcTemplate.update(mySql, author.getFirst_name(),author.getLast_name(),author.getAuthor_id());
+        System.out.println(authInt);
+
+    }
+
+
     private class AuthorRowMapper implements RowMapper<Author> {
 
         @Override

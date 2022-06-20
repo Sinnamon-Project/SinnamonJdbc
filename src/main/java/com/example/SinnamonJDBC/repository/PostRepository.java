@@ -1,4 +1,6 @@
-package com.example.SinnamonJDBC;
+package com.example.SinnamonJDBC.repository;
+import com.example.SinnamonJDBC.model.Author;
+import com.example.SinnamonJDBC.model.Blog_post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -18,6 +20,14 @@ public class PostRepository {
         List<Blog_post> posts = jdbcTemplate.query(mySQL, new PostRowMapper());
         return posts;
     }
+
+    public List <Blog_post> findAllPosts(int id){
+        String mySql = "select * from blog_post  where author = ?";
+        List <Blog_post> b =  jdbcTemplate.query(mySql, new PostRowMapper(),id );
+        return b;
+    }
+
+
     private  class PostRowMapper  implements RowMapper<Blog_post>{
         @Override
         public Blog_post mapRow(ResultSet rs, int rowNum) throws SQLException {

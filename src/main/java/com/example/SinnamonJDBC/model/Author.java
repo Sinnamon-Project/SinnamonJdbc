@@ -1,9 +1,17 @@
-package com.example.SinnamonJDBC;
+package com.example.SinnamonJDBC.model;
+
+import com.fasterxml.jackson.annotation.JsonSetter;
 
 public class Author {
     private int author_id;
     private String first_name;
     private String last_name;
+
+    private Blog_post blogPost;
+    @JsonSetter("blogPost")
+    public void setBlogPost(Blog_post blogPost) {
+        this.blogPost = blogPost;
+    }
 
     @Override
     public String toString() {
