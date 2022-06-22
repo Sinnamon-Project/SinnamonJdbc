@@ -1,6 +1,7 @@
 package com.example.SinnamonJDBC.model;
 
-import com.fasterxml.jackson.annotation.JsonSetter;
+
+
 
 public class Blog_post {
 
@@ -66,7 +67,7 @@ public class Blog_post {
         return text_post;
     }
 
-    public String getPicture() {
+    public  String getPicture() {
         return picture;
     }
 

@@ -26,7 +26,7 @@ public class AuthorService {
 
     public List<Blog_post> findPostsByName(String lastName) {
         Author a = authRepository.findOneAuthor(lastName);
-        List <Blog_post> bp = postRepository.findAllPosts(a.getAuthor_id());
+        List <Blog_post> bp = postRepository.findAllPostsById(a.getAuthor_id());
         return bp;
     }
 

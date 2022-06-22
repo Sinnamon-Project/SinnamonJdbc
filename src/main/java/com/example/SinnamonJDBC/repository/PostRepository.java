@@ -21,11 +21,35 @@ public class PostRepository {
         return posts;
     }
 
-    public List <Blog_post> findAllPosts(int id){
+    public List <Blog_post> findAllPostsById(int id){
         String mySql = "select * from blog_post  where author = ?";
         List <Blog_post> b =  jdbcTemplate.query(mySql, new PostRowMapper(),id );
         return b;
     }
+
+    public void saveNewPost(Blog_post newPost){
+        String mySql = "insert into blog_post(title,text_post,picture,author) values (?,?,?,?)";
+        int num = jdbcTemplate.update(mySql, newPost.getTitle(), newPost.getText_post(), newPost.getPicture(), newPost.getAuthor());
+        System.out.println(num);
+    }
+
+    public void updatePostTitle(String updatedTitle, int id){
+        String mySql = "update blog_post set title = ? where post_id = ? ";
+        int num = jdbcTemplate.update(mySql,updatedTitle,id);
+        System.out.println(num);
+    }
+    public void updatePostText(Blog_post updatedText){
+        String mySql = "update blog_post set text_post = ?,date_time =? where post_id = ? ";
+        int num = jdbcTemplate.update(mySql,updatedText.getTitle(),updatedText.getDate_time(), updatedText.getAuthor());
+        System.out.println(num);
+    }
+    public void updatePostPic(Blog_post updatedPic){
+        String mySql = "update blog_post set title = ?,date_time =? where post_id = ? ";
+        int num = jdbcTemplate.update(mySql,updatedPic.getTitle(),updatedPic.getDate_time(), updatedPic.getAuthor());
+        System.out.println(num);
+    }
+
+    
 
 
     private  class PostRowMapper  implements RowMapper<Blog_post>{
