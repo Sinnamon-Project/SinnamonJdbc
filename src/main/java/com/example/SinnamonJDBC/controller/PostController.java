@@ -15,39 +15,39 @@ public class PostController {
     @Autowired
     PostService postService;
 
-    //CREATING NEW POST:
+    @GetMapping("/posts/findAll/{id}")
+    List<Blog_post> findPostsbyId(@PathVariable int id) {
+        return postService.getPostById(id);
+    }
+
     @PostMapping("/posts")
     public ResponseEntity<?> createPost(@RequestBody Blog_post blogPost) {
         postService.createPost(blogPost);
         return ResponseEntity.status(HttpStatus.CREATED).body(blogPost);
     }
-
-    //    Find all Posts by AuthorId:
-    @GetMapping("/posts/{id}")
-    List<Blog_post> findPostsbyId(@PathVariable int id) {
-        return postService.getPostById(id);
+    @PostMapping("/posts/updateTitle/{id}")
+    public void updateTitle(@PathVariable int id,@RequestBody Blog_post updatedTitle) {
+        System.out.println(updatedTitle.getTitle());
+        postService.updateTitle(updatedTitle.getTitle(),id);
     }
 
-    @PostMapping("/posts/updatetitle")
-    public void updateTitle(@RequestBody Blog_post updatedTitle) {
-        postService.updateText(updatedTitle);
+    @PostMapping("/posts/updateText/{id}")
+    public void updateText(@PathVariable int id,@RequestBody Blog_post updatedText){
+        System.out.println(updatedText.getText_post());
+        postService.updateText(updatedText.getText_post(),id);
     }
 
-    @PostMapping("/posts/updatetext")
-    public ResponseEntity<?> updateText(@RequestBody Blog_post updatedText){
-        postService.updateText(updatedText);
-        return ResponseEntity.status(HttpStatus.CREATED).body(updatedText);
+    @PostMapping("/posts/updatePic/{id}")
+    public void updatePic(@PathVariable int id,@RequestBody Blog_post updatedPic){
+        postService.updatePic(updatedPic.getPicture(),id);
     }
+//    @PostMapping("/posts/edit/{id}")
+//    public void updateAll(@RequestBody Blog_post updatedTitle,@RequestBody Blog_post updatedText,@RequestBody Blog_post updatedPic,@PathVariable int id) {
+//        postService.updateAll(updatedTitle.getTitle(),updatedText.getText_post(),updatedPic.getPicture(),id);
+//    }
 
-    @PostMapping("/posts/updatepic")
-    public ResponseEntity<?> updatePic(@RequestBody Blog_post updatedPic){
-        postService.updateText(updatedPic);
-        return ResponseEntity.status(HttpStatus.CREATED).body(updatedPic);
+    @PostMapping("/posts/delete/{id}")
+    public void deletePost(@PathVariable int id){
+        postService.deletePost(id);
     }
-
-
-
-
-
-
 }
