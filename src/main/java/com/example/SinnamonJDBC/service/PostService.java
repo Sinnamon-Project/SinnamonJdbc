@@ -19,6 +19,9 @@ public class PostService {
     public List<Blog_post> getPostById(int id) {
         return postRepository.findAllPostsById(id);
     }
+
+    public List<Blog_post> getAllDepartments(){ return postRepository.findAllBlogs();
+    }
     public List<Blog_post> getAllBlogs() {
         return postRepository.findAllBlogs();
     }

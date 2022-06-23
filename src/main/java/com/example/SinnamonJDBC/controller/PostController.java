@@ -15,9 +15,14 @@ public class PostController {
     @Autowired
     PostService postService;
 
-    @GetMapping("/posts/findAll/{id}")
+    @GetMapping("/posts/{id}")
     List<Blog_post> findPostsbyId(@PathVariable int id) {
         return postService.getPostById(id);
+    }
+
+    @GetMapping("/posts")
+    public List<Blog_post> getAllDepartments(){
+        return postService.getAllDepartments();
     }
 
     @PostMapping("/posts")
