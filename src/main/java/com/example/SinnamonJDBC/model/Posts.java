@@ -3,7 +3,7 @@ package com.example.SinnamonJDBC.model;
 
 
 
-public class Blog_post {
+public class Posts {
 
 
     private int post_id;

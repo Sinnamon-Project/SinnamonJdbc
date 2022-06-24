@@ -1,7 +1,7 @@
 package com.example.SinnamonJDBC.service;
 
 import com.example.SinnamonJDBC.model.Author;
-import com.example.SinnamonJDBC.model.Blog_post;
+import com.example.SinnamonJDBC.model.Posts;
 import com.example.SinnamonJDBC.repository.AuthorRepository;
 import com.example.SinnamonJDBC.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +24,9 @@ public class AuthorService {
         authRepository.saveNewAuthor(auth);
     }
 
-    public List<Blog_post> findPostsByName(String lastName) {
+    public List<Posts> findPostsByName(String lastName) {
         Author a = authRepository.findOneAuthor(lastName);
-        List <Blog_post> bp = postRepository.findAllPostsById(a.getAuthor_id());
+        List <Posts> bp = postRepository.findAllPostsById(a.getAuthor_id());
         return bp;
     }
 

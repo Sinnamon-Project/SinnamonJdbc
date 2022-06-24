@@ -7,9 +7,9 @@ public class Author {
     private String first_name;
     private String last_name;
 
-    private Blog_post blogPost;
+    private Posts blogPost;
     @JsonSetter("blogPost")
-    public void setBlogPost(Blog_post blogPost) {
+    public void setBlogPost(Posts blogPost) {
         this.blogPost = blogPost;
     }
 

@@ -1,15 +1,10 @@
 package com.example.SinnamonJDBC;
 
-import com.example.SinnamonJDBC.model.Author;
-import com.example.SinnamonJDBC.model.Blog_post;
 import com.example.SinnamonJDBC.repository.AuthorRepository;
 import com.example.SinnamonJDBC.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.util.List;
 
 @SpringBootApplication
 public class SinnamonJdbcApplication {

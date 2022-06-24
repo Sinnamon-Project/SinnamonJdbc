@@ -1,7 +1,6 @@
 package com.example.SinnamonJDBC.service;
 
-import com.example.SinnamonJDBC.model.Author;
-import com.example.SinnamonJDBC.model.Blog_post;
+import com.example.SinnamonJDBC.model.Posts;
 import com.example.SinnamonJDBC.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,23 +12,20 @@ public class PostService {
     @Autowired
     PostRepository postRepository;
 
-    public void createPost(Blog_post new_Post) {
-        postRepository.saveNewPost(new_Post);
+    public void createPost(Posts post) {
+        postRepository.saveNewPost(post);
     }
-    public List<Blog_post> getPostById(int id) {
+    public List<Posts> getPostById(int id) {
         return postRepository.findAllPostsById(id);
     }
 
-    public List<Blog_post> getAllDepartments(){ return postRepository.findAllBlogs();
+    public List<Posts> getAllPosts(){ return postRepository.findAllPosts();
     }
-    public List<Blog_post> getAllBlogs() {
-        return postRepository.findAllBlogs();
+    public void updateTitle(String title, int id){
+        postRepository.updatePostTitle(title,id);
     }
-    public void updateTitle(String updateTitle, int id){
-        postRepository.updatePostTitle(updateTitle,id);
-    }
-    public void updateText(String updateText, int id){ postRepository.updatePostText(updateText, id);}
-    public void updatePic(String updatePic, int id){postRepository.updatePostPic(updatePic,id);}
+    public void updateText(String text, int id){ postRepository.updatePostText(text, id);}
+    public void updatePic(String pic, int id){postRepository.updatePostPic(pic,id);}
 //    public void updateAll(String updateTitle, String updateText,String updatePic, int id){postRepository.updateAll(updateTitle,updateText,updatePic,id);}
     public void deletePost(int id){postRepository.deletePost(id);}
 }

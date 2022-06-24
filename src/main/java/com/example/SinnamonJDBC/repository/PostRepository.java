@@ -1,6 +1,5 @@
 package com.example.SinnamonJDBC.repository;
-import com.example.SinnamonJDBC.model.Author;
-import com.example.SinnamonJDBC.model.Blog_post;
+import com.example.SinnamonJDBC.model.Posts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -15,32 +14,32 @@ public class PostRepository {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    public List<Blog_post> findAllBlogs(){
+    public List<Posts> findAllPosts(){
         String mySQL = "select * from blog_post";
-        List<Blog_post> posts = jdbcTemplate.query(mySQL, new PostRowMapper());
-        return posts;
+        List <Posts> p= jdbcTemplate.query(mySQL, new PostRowMapper());
+        return p;
     }
-    public List <Blog_post> findAllPostsById(int id){
+    public List <Posts> findAllPostsById(int id){
         String mySql = "select * from blog_post  where author = ?";
-        List <Blog_post> b =  jdbcTemplate.query(mySql, new PostRowMapper(),id );
+        List <Posts> b =  jdbcTemplate.query(mySql, new PostRowMapper(),id );
         return b;
     }
-    public void saveNewPost(Blog_post newPost){
+    public void saveNewPost(Posts post){
         String mySql = "insert into blog_post(title,text_post,picture,author) values (?,?,?,?)";
-        int num = jdbcTemplate.update(mySql, newPost.getTitle(), newPost.getText_post(), newPost.getPicture(), newPost.getAuthor());
+        int num = jdbcTemplate.update(mySql, post.getTitle(), post.getText_post(), post.getPicture(), post.getAuthor());
         System.out.println(num);
     }
-    public void updatePostTitle(String updatedTitle, int id){
+    public void updatePostTitle(String title, int id){
         String mySql = "update blog_post set title = ? where post_id = ? ";
-        jdbcTemplate.update(mySql,updatedTitle,id);
+        jdbcTemplate.update(mySql,title,id);
     }
-    public void updatePostText(String updatedText, int id){
+    public void updatePostText(String text, int id){
         String mySql = "update blog_post set text_post = ? where post_id = ? ";
-        jdbcTemplate.update(mySql,updatedText, id);
+        jdbcTemplate.update(mySql,text, id);
     }
-    public void updatePostPic(String updatedPic, int id){
+    public void updatePostPic(String pic, int id){
         String mySql = "update blog_post set picture = ? where post_id = ? ";
-        jdbcTemplate.update(mySql,updatedPic, id);
+        jdbcTemplate.update(mySql,pic, id);
     }
 //    public void updateAll(String updatedTitle,String updatedText, String updatedPic,int id){
 //        String mySql = "update blog_post set title = ? , text_post = ?, picture = ? where post_id = ? ";
@@ -54,10 +53,10 @@ public class PostRepository {
     
 
 
-    private  class PostRowMapper  implements RowMapper<Blog_post>{
+    private  class PostRowMapper  implements RowMapper<Posts>{
         @Override
-        public Blog_post mapRow(ResultSet rs, int rowNum) throws SQLException {
-            Blog_post post=new Blog_post();
+        public Posts mapRow(ResultSet rs, int rowNum) throws SQLException {
+            Posts post=new Posts();
             post.setPost_id(rs.getInt("post_id"));post.setPost_id(rs.getInt("post_id"));
             post.setTitle(rs.getString("title"));
             post.setDate_time(rs.getString("date_time"));
