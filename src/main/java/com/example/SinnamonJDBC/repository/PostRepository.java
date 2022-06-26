@@ -20,7 +20,7 @@ public class PostRepository {
         return p;
     }
     public List <Posts> findAllPostsById(int id){
-        String mySql = "select * from blog_post  where author = ?";
+        String mySql = "select * from blog_post  where post_id = ?";
         List <Posts> b =  jdbcTemplate.query(mySql, new PostRowMapper(),id );
         return b;
     }
