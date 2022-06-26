@@ -25,7 +25,7 @@ public class PostRepository {
         return b;
     }
     public void saveNewPost(Posts post){
-        String mySql = "insert into blog_post(title,text_post,picture,author) values (?,?,?,?)";
+        String mySql = "insert into blog_post(title, date_time, text_post,picture,author) values (?,now(),?,?,?)";
         int num = jdbcTemplate.update(mySql, post.getTitle(), post.getText_post(), post.getPicture(), post.getAuthor());
         System.out.println(num);
     }
