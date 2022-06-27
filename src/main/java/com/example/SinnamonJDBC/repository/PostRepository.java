@@ -15,7 +15,7 @@ public class PostRepository {
     JdbcTemplate jdbcTemplate;
 
     public List<Posts> findAllPosts(){
-        String mySQL = "select * from blog_post";
+        String mySQL = "select * from blog_post order by date_time desc";
         List <Posts> p= jdbcTemplate.query(mySQL, new PostRowMapper());
         return p;
     }
